@@ -1,6 +1,7 @@
 package com.javarush.task.task31.task3110;
 
 import com.javarush.task.task31.task3110.command.ExitCommand;
+import com.javarush.task.task31.task3110.exception.WrongZipFileException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,28 +14,34 @@ import java.nio.file.Paths;
 public class Archiver {
 
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Введите полный путь к архиву, в котором будет храниться файл");
-        String pathToArchive = reader.readLine();
+        Operation operation = null;
+        do {
+            try {
+                operation = askOperation();
+                CommandExecutor.execute(operation);
+            } catch (WrongZipFileException e){
+                ConsoleHelper.writeMessage("Вы не выбрали файл архива или выбрали неверный файл.");
+            } catch (Exception e){
+                ConsoleHelper.writeMessage("Произошла ошибка. Проверьте введенные данные.");
+            }
+        } while (operation != Operation.EXIT);
+    }
 
-        ZipFileManager zipFileManager = new ZipFileManager(Paths.get(pathToArchive));
+    /**
+     * Запрашивать у пользователя номер операции, которую он хочет совершить.
+     * @return - номер операции, которую пользователь хочет совершить
+     * @throws IOException
+     */
+    public static Operation askOperation() throws IOException {
+        ConsoleHelper.writeMessage("Выберите операцию:");
+        ConsoleHelper.writeMessage(Operation.CREATE.ordinal() + " - упаковать файлы в архив");
+        ConsoleHelper.writeMessage(Operation.ADD.ordinal() + " - добавить файл в архив");
+        ConsoleHelper.writeMessage(Operation.REMOVE.ordinal() + " - удалить файл из архива");
+        ConsoleHelper.writeMessage(Operation.EXTRACT.ordinal() + " - распаковать архив");
+        ConsoleHelper.writeMessage(Operation.CONTENT.ordinal() + " - просмотреть содержимое архива");
+        ConsoleHelper.writeMessage(Operation.EXIT.ordinal() + " - выход");
 
-        System.out.println("Введите полный путь к файлу, который требуется архивировать");
-        String pathToFile = reader.readLine();
-
-        try {
-            zipFileManager.createZip(Paths.get(pathToFile));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        reader.close();
-
-        try {
-            new ExitCommand().execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        return Operation.values()[ConsoleHelper.readInt()];
     }
 
 }
