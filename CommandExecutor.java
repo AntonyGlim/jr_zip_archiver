@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandExecutor {
+    private static final Map<Operation, Command> allKnownCommandsMap = new HashMap<>();
 
-    private static final Map<Operation, Command> allKnownCommandsMap;
     static {
-        allKnownCommandsMap = new HashMap<>();
         allKnownCommandsMap.put(Operation.CREATE, new ZipCreateCommand());
         allKnownCommandsMap.put(Operation.ADD, new ZipAddCommand());
         allKnownCommandsMap.put(Operation.REMOVE, new ZipRemoveCommand());
@@ -21,13 +20,7 @@ public class CommandExecutor {
     private CommandExecutor() {
     }
 
-    /**
-     * Должен брать нужную команду из allKnownCommandsMap и вызывать у нее метод execute
-     * @param operation
-     * @throws Exception
-     */
-    public static void execute(Operation operation) throws Exception{
+    public static void execute(Operation operation) throws Exception {
         allKnownCommandsMap.get(operation).execute();
     }
-
 }
