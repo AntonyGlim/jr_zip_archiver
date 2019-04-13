@@ -1,14 +1,10 @@
 package com.javarush.task.task31.task3110;
 
-/**
- * Содержит все команды, которые
- * поддерживает наш архиватор.
- */
 public enum Operation {
-    CREATE, //Создать архив
-    ADD, //Добавить файл в архив
-    REMOVE, //Удалить файл из архива
-    EXTRACT, //Извлечь содержимое архива
-    CONTENT, //Просмотреть содержимое архива
-    EXIT //Выйти из программы
+    CREATE,
+    ADD,
+    REMOVE,
+    EXTRACT,
+    CONTENT,
+    EXIT
 }
