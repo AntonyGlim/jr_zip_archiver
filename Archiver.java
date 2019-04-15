@@ -14,6 +14,7 @@ public class Archiver {
                 CommandExecutor.execute(operation);
             } catch (WrongZipFileException e) {
                 ConsoleHelper.writeMessage("Вы не выбрали файл архива или выбрали неверный файл.");
+                e.printStackTrace();
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("Произошла ошибка. Проверьте введенные данные.");
             }
