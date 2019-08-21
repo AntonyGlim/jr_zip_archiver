@@ -1,4 +1,4 @@
-package com.javarush.task.task31.task3110;
+package archiver;
 
 public class FileProperties {
     private String name;

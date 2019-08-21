@@ -1,4 +1,4 @@
-package com.javarush.task.task31.task3110.exception;
+package archiver.exception;
 
 public class WrongZipFileException extends Exception {
 }

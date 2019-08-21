@@ -1,8 +1,9 @@
-package com.javarush.task.task31.task3110.command;
+package archiver.command;
 
-import com.javarush.task.task31.task3110.ConsoleHelper;
-import com.javarush.task.task31.task3110.FileProperties;
-import com.javarush.task.task31.task3110.ZipFileManager;
+
+import archiver.ConsoleHelper;
+import archiver.FileProperties;
+import archiver.ZipFileManager;
 
 import java.util.List;
 

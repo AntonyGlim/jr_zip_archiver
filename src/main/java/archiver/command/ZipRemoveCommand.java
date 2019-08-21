@@ -1,7 +1,8 @@
-package com.javarush.task.task31.task3110.command;
+package archiver.command;
 
-import com.javarush.task.task31.task3110.ConsoleHelper;
-import com.javarush.task.task31.task3110.ZipFileManager;
+
+import archiver.ConsoleHelper;
+import archiver.ZipFileManager;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
